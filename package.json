@@ -1,0 +1,26 @@
+{
+  "name": "valueconversion",
+  "version": "1.0.0",
+  "description": "simple app to convert many values",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha || true",
+    "build": "echo Some build activity",
+    "start": "npm run build && node index.js",
+    "start:dev": "export NODE_ENV=development && npm run build && nodemon index.js",
+    "start:prod": "export NODE_ENV=production && npm run build && nodemon index.js"
+  },
+  "author": "honey",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.3.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.2.2"
+  }
+}
