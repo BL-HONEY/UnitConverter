@@ -1,5 +1,6 @@
 const utility = require('../utility');
 const tempEnum = ['celcius', 'farenheit']
+const lengthEnum = ["inch" , "yard" , "centimetre" , "feet"]
 module.exports.temperatureConversion = (body, callback) => {
     try {
         let errorMessage = "values found in request body";
@@ -41,7 +42,7 @@ module.exports.temperatureConversion = (body, callback) => {
             errorArray.push(TypeErrorMessage);
             throw errorArray;
         }
-     
+     if(body.measureCriteria === "temperature"){
         for (i = 0; i < tempEnum.length; i++) {
             if (body.unit === tempEnum[i]) {
               isUnitEnumFlag = false;
@@ -52,7 +53,7 @@ module.exports.temperatureConversion = (body, callback) => {
         }
 
         if(isUnitEnumFlag === true || isConvertToEnumFlag === true){
-            let enumErrorMessage = "unit and convertTo can only be a celcius of farenheit"
+            let enumErrorMessage = "unit and convertTo can only be a celcius or farenheit"
             errorArray.push(enumErrorMessage)
             throw errorArray
         }
@@ -64,6 +65,27 @@ module.exports.temperatureConversion = (body, callback) => {
                 return callback(null, data)
             }
         })
+    }else if(body.measureCriteria === "length")
+    {
+        for (i = 0; i < lengthEnum.length; i++) {
+            if (body.unit === lengthEnum[i]) {
+              isUnitEnumFlag = false;
+            }   
+            if(body.convertTo === lengthEnum[i]){
+                isConvertToEnumFlag = false
+            }
+        }
+
+        if(isUnitEnumFlag === true || isConvertToEnumFlag === true){
+            let enumErrorMessage = "unit and convertTo can only be a inch , yard , centimetre or feet"
+            errorArray.push(enumErrorMessage)
+            throw errorArray
+        }
+        if (isThereError === true)
+            throw errorArray
+
+        
+    }
     } catch (err) {
         return callback(err, null);
     }

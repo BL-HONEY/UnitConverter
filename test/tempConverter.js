@@ -25,7 +25,8 @@ describe('testing if there is a function for temperature conversion', () => {
            let requestBody = {
                "unit":null,
                "convertTo":"farenheit",
-               "value":4
+               "value":4,
+               "measureCriteria": "temperature"
            }
            unitConverterService.temperatureConversion(requestBody, (err, data) => {
                if(err){
@@ -41,7 +42,8 @@ describe('testing if there is a function for temperature conversion', () => {
             let requestBody = {
                 "unit": "celcius",
                 "convertTo": null,
-                "value": 4
+                "value": 4,
+                "measureCriteria": "temperature"
             }
             unitConverterService.temperatureConversion(requestBody, (err, data) => {
                 if(err){
@@ -55,7 +57,8 @@ describe('testing if there is a function for temperature conversion', () => {
             let requestBody = {
                 "unit": "celcius",
                 "convertTo": "farenheit",
-                "value": null
+                "value": null,
+                "measureCriteria": "temperature"
             }
             unitConverterService.temperatureConversion(requestBody, (err, data) => {
                 if(err){
@@ -72,7 +75,8 @@ describe('testing if there is a function for temperature conversion', () => {
            let requestBody = {
                "unit":undefined,
                "convertTo":"farenheit",
-               "value":4
+               "value":4,
+               "measureCriteria": "temperature"
            }
            unitConverterService.temperatureConversion(requestBody, (err, data) => {
                if(err){
@@ -86,7 +90,8 @@ describe('testing if there is a function for temperature conversion', () => {
             let requestBody = {
                 "unit": "celcius",
                 "convertTo": undefined,
-                "value": 4
+                "value": 4,
+                "measureCriteria": "temperature"
             }
             unitConverterService.temperatureConversion(requestBody, (err, data) => {
                 if(err){
@@ -100,7 +105,8 @@ describe('testing if there is a function for temperature conversion', () => {
             let requestBody = {
                 "unit": "celcius",
                 "convertTo": "farenheit",
-                "value": undefined
+                "value": undefined,
+                "measureCriteria": "temperature"
             }
             unitConverterService.temperatureConversion(requestBody, (err, data) => {
                 if(err){
@@ -117,7 +123,8 @@ describe('testing if there is a function for temperature conversion', () => {
            let requestBody = {
                "unit":34,
                "convertTo":"farenheit",
-               "value":4
+               "value":4,
+               "measureCriteria": "temperature"
            }
            unitConverterService.temperatureConversion(requestBody, (err, data) => {
                if(err){
@@ -131,7 +138,8 @@ describe('testing if there is a function for temperature conversion', () => {
             let requestBody = {
                 "unit":"celcius",
                 "convertTo":"farenheit",
-                "value":"xyz"
+                "value":"xyz",
+                "measureCriteria": "temperature"
             }
             unitConverterService.temperatureConversion(requestBody, (err, data) => {
                 if(err){                    
@@ -145,7 +153,8 @@ describe('testing if there is a function for temperature conversion', () => {
             let requestBody = {
                 "unit":"celcius",
                 "convertTo":23,
-                "value":32
+                "value":32,
+                "measureCriteria": "temperature"
             }
             unitConverterService.temperatureConversion(requestBody, (err, data) => {
                 if(err){
@@ -159,15 +168,17 @@ describe('testing if there is a function for temperature conversion', () => {
 
 
     describe('Testing the temperature function for improper enum types', () => {
-        it('should return "unit and convertTo can only be a celcius of farenheit" ' , (done) => {
+        it('should return "unit and convertTo can only be a celcius or farenheit" ' , (done) => {
            let requestBody = {
                "unit":"celcius",
                "convertTo":"faren",
-               "value":4
+               "value":4,
+               "measureCriteria": "temperature"
+
            }
            unitConverterService.temperatureConversion(requestBody, (err, data) => {
                if(err){                   
-                 assert.equal(err, "unit and convertTo can only be a celcius of farenheit");
+                 assert.equal(err, "unit and convertTo can only be a celcius or farenheit");
                  done();
                }
            })
@@ -177,25 +188,27 @@ describe('testing if there is a function for temperature conversion', () => {
             let requestBody = {
                 "unit":"celc",
                 "convertTo":"farenheit",
-                "value":4
+                "value":4,
+                "measureCriteria": "temperature"
             }
             unitConverterService.temperatureConversion(requestBody, (err, data) => {
                 if(err){
-                  assert.equal(err, "unit and convertTo can only be a celcius of farenheit");
+                  assert.equal(err, "unit and convertTo can only be a celcius or farenheit");
                   done();
                 }
             })
          });
 
-         it('should return "unit and convertTo can only be a celcius of farenheit" ' , (done) => {
+         it('should return "unit and convertTo can only be a celcius or farenheit" ' , (done) => {
             let requestBody = {
                 "unit":"celc",
                 "convertTo":"farenhei",
-                "value":4
+                "value":4,
+                "measureCriteria": "temperature"
             }
             unitConverterService.temperatureConversion(requestBody, (err, data) => {
                 if(err){                    
-                  assert.equal(err, "unit and convertTo can only be a celcius of farenheit");
+                  assert.equal(err, "unit and convertTo can only be a celcius or farenheit");
                   done();
                 }
             })
@@ -209,7 +222,8 @@ describe('testing if there is a function for temperature conversion', () => {
            let requestBody = {
                "unit":"farenheit",
                "convertTo":"celcius",
-               "value":212
+               "value":212,
+               "measureCriteria": "temperature"
            }
            unitConverterService.temperatureConversion(requestBody, (err, data) => {               
                if(data){                                      
@@ -223,7 +237,8 @@ describe('testing if there is a function for temperature conversion', () => {
             let requestBody = {
                 "unit":"celcius",
                 "convertTo":"farenheit",
-                "value":100
+                "value":100,
+                "measureCriteria": "temperature"
             }
             unitConverterService.temperatureConversion(requestBody, (err, data) => {               
                 if(data){                                      
