@@ -4,6 +4,7 @@
   "description": "simple app to convert many values",
   "main": "index.js",
   "scripts": {
+    "coverage": "nyc -r cobertura -r text-summary -r lcov npm test",
     "test": "mocha || true",
     "build": "echo Some build activity",
     "start": "npm run build && node index.js",
@@ -16,7 +17,8 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-validator": "^6.3.0"
+    "express-validator": "^6.3.0",
+    "nyc": "^13.3.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",

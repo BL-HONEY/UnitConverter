@@ -23,34 +23,37 @@ const
                }
            })
         });
+        it('should return "unit and convertTo can only be a inch , yard , centimetre or feet" ' , (done) => {
+            let requestBody = {
+                "unit":"yard",
+                "convertTo":"inchhh",
+                "value":4,
+                "measureCriteria": "length"
+            }
+            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+                if(err){                   
+                  assert.equal(err, "unit and convertTo can only be a inch , yard , centimetre or feet");
+                  done();
+                }
+            })
+         });
+     }); 
 
-        // it('should return "unit and convertTo can only be a celcius of farenheit" ' , (done) => {
-        //     let requestBody = {
-        //         "unit":"celc",
-        //         "convertTo":"farenheit",
-        //         "value":4,
-        //         "measureCriteria": "length"
-        //     }
-        //     unitConverterService.temperatureConversion(requestBody, (err, data) => {
-        //         if(err){
-        //           assert.equal(err, "unit and convertTo can only be a celcius of farenheit");
-        //           done();
-        //         }
-        //     })
-        //  });
 
-        //  it('should return "unit and convertTo can only be a celcius of farenheit" ' , (done) => {
-        //     let requestBody = {
-        //         "unit":"celc",
-        //         "convertTo":"farenhei",
-        //         "value":4,
-        //         "measureCriteria": "length"
-        //     }
-        //     unitConverterService.temperatureConversion(requestBody, (err, data) => {
-        //         if(err){                    
-        //           assert.equal(err, "unit and convertTo can only be a celcius of farenheit");
-        //           done();
-        //         }
-        //     })
-        //  });
+     describe('Testing the conversion function to compare different values', () => {
+        it('should return proper converted value in yard' , (done) => {
+           let requestBody = {
+               "unit":"feet",
+               "convertTo":"yard",
+               "value":3,
+               "measureCriteria": "length"
+           }
+           unitConverterService.temperatureConversion(requestBody, (err, data) => {
+               if(data){                   
+                 assert.equal(data, 1);
+                 done();
+               }
+           })
+        });
+      
      }); 
