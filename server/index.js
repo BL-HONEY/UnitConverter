@@ -22,7 +22,7 @@ app.use(function (req, res, next) {
 // app.use(expressValidator());
 app.use('/api', router);
 
-loadEnvBasedConfig = (env) => {
+const loadEnvBasedConfig = (env) => {
     config = require("./config/"+env);
     app.listen(config.PORT, function(){
         console.log("You are connect to %s environment",env);

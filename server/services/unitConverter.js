@@ -6,7 +6,6 @@ module.exports.temperatureConversion = (body, callback) => {
         let
             errorMessage = "values found in request body",
             errorArray = [],
-            isThereError = false,
             isUnitEnumFlag = true,
             isConvertToEnumFlag = true;
         if (body.unit === null || body.value === null || body.convertTo === null) {
@@ -20,19 +19,16 @@ module.exports.temperatureConversion = (body, callback) => {
             throw errorArray;
         }
         if (typeof (body.unit) !== "string") {
-            isThereError = true;
             let TypeErrorMessage = "unit cannot be a " + typeof (body.unit)
             errorArray.push(TypeErrorMessage);
             throw errorArray;
         }
         if (typeof (body.value) !== "number") {
-            isThereError = true;
             let TypeErrorMessage = "value cannot be a " + typeof (body.value)
             errorArray.push(TypeErrorMessage);
             throw errorArray;
         }
         if (typeof (body.convertTo) !== "string") {
-            isThereError = true;
             let typeErrorMessage = "convertTo cannot be a " + typeof (body.convertTo)
             errorArray.push(typeErrorMessage);
             throw errorArray;

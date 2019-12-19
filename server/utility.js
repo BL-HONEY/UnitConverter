@@ -12,6 +12,12 @@ class Utility {
         if (body.convertTo === "yard") {
             let resultData = this.convertToYard(body.unit, body.value);
             return callback(null, resultData)
+        }else if(body.convertTo === "inch"){
+            let resultData = this.convertToInches(body.unit, body.value);
+            return callback(null, resultData)
+        }else{
+            let resultData = this.convertToFeet(body.unit, body.value);
+            return callback(null, resultData) 
         }
     }
     convertToYard (unit, value){
@@ -22,6 +28,29 @@ class Utility {
             return value / 36;
         }else if(unit === "centimetre"){
             return value / 91.44;
+        }
+    }
+
+    convertToInches (unit, value){
+        if (unit === "feet") {
+            return value * 12;
+        }
+        else if(unit === "yard") {
+            return value * 36;
+        }else if(unit === "centimetre"){
+            return value / 2.54;
+        }
+    }
+
+    convertToFeet (unit, value){
+        if (unit === "inch") {
+            return value / 12;
+        }
+        else if(unit === "yard") {
+            return value * 3;
+        }
+        else if(unit === "centimetre"){
+            return value / 30.48;
         }
     }
 }
