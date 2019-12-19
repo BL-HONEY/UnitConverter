@@ -55,5 +55,50 @@ const
                }
            })
         });
+
+        it('1 feet should not be equal to 1 yard' , (done) => {
+            let requestBody = {
+                "unit":"feet",
+                "convertTo":"yard",
+                "value":1,
+                "measureCriteria": "length"
+            }
+            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+                if(data){                   
+                  assert.notEqual(data, 1);
+                  done();
+                }
+            })
+         });
+
+         it('1 inch should not be equal to 1 yard' , (done) => {
+            let requestBody = {
+                "unit":"inch",
+                "convertTo":"yard",
+                "value":1,
+                "measureCriteria": "length"
+            }
+            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+                if(data){                   
+                  assert.notEqual(data, 1);
+                  done();
+                }
+            })
+         });
+
+         it('1 inch should not be equal to 1 yard' , (done) => {
+            let requestBody = {
+                "unit":"centimetre",
+                "convertTo":"yard",
+                "value":1,
+                "measureCriteria": "length"
+            }
+            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+                if(data){                                       
+                  assert.equal(data, 0.010936132983377079);
+                  done();
+                }
+            })
+         });
       
      }); 
