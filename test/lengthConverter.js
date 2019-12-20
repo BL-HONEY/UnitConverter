@@ -224,3 +224,54 @@ const
        
       
      }); 
+
+
+     describe('checking all length conversion in centimetre', () => {
+
+        it('1 yard should be equal to 91.44 centimetre' , (done) => {
+            let requestBody = {
+                "unit":"yard",
+                "convertTo":"centimetre",
+                "value":1,
+                "measureCriteria": "length"
+            }
+            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+                if(data){                                                                               
+                  assert.equal( data, 91.44);
+                  done();
+                }
+            })
+         });
+     
+         it('1 foot should be equal to 30.48 centimetre' , (done) => {
+            let requestBody = {
+                "unit":"feet",
+                "convertTo":"centimetre",
+                "value":1,
+                "measureCriteria": "length"
+            }
+            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+                if(data){                                                                               
+                  assert.equal( data, 30.48);
+                  done();
+                }
+            })
+         });
+
+         it('1 inch should be equal to 2.54 centimetre' , (done) => {
+            let requestBody = {
+                "unit":"inch",
+                "convertTo":"centimetre",
+                "value": 1,
+                "measureCriteria": "length"
+            }
+            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+                if(data){                                                                               
+                  assert.equal(data, 2.54);
+                  done();
+                }
+            })
+         });
+       
+      
+     });

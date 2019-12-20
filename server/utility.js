@@ -15,9 +15,49 @@ class Utility {
         }else if(body.convertTo === "inch"){
             let resultData = this.convertToInches(body.unit, body.value);
             return callback(null, resultData)
+        } else if(body.convertTo === "centimetre"){
+            let resultData = this.convertToCentimetre(body.unit, body.value);
+            return callback(null, resultData) 
         }else{
             let resultData = this.convertToFeet(body.unit, body.value);
             return callback(null, resultData) 
+        }
+    }
+
+    volumeConversion(body, callback){
+        if (body.convertTo === "millilitre") {
+            let resultData = this.convertToMillilitre(body.unit, body.value);
+            return callback(null, resultData)
+        }
+        else if(body.convertTo === "gallon"){
+             let resultData = this.convertToGallon(body.unit, body.value);
+             return callback(null, resultData)
+        }else{
+            let resultData = this.convertToLitre(body.unit, body.value);
+            return callback(null, resultData) 
+        }
+    }
+
+    convertToMillilitre(unit, value){
+        if(unit === "gallon"){
+            return value * 3785
+        }else {
+            return value * 1000
+        }
+    }
+
+    convertToLitre(unit, value){
+        if(unit === "gallon"){
+            return value * 3.78541
+        }else {
+            return value / 1000
+        }
+    }
+    convertToGallon(unit, value){
+        if(unit === "litre"){
+            return value / 3.78541
+        }else {
+            return value / 3785
         }
     }
     convertToYard (unit, value){
@@ -26,7 +66,7 @@ class Utility {
         }
         else if(unit === "inch") {
             return value / 36;
-        }else if(unit === "centimetre"){
+        }else {
             return value / 91.44;
         }
     }
@@ -37,7 +77,7 @@ class Utility {
         }
         else if(unit === "yard") {
             return value * 36;
-        }else if(unit === "centimetre"){
+        }else {
             return value / 2.54;
         }
     }
@@ -49,8 +89,20 @@ class Utility {
         else if(unit === "yard") {
             return value * 3;
         }
-        else if(unit === "centimetre"){
+        else {
             return value / 30.48;
+        }
+    }
+
+    convertToCentimetre (unit, value){
+        if (unit === "inch") {
+            return value * 2.54;
+        }
+        else if(unit === "yard") {
+            return value * 91.44;
+        }
+        else {
+            return value * 30.48;
         }
     }
 }

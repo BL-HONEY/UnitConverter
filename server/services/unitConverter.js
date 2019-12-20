@@ -1,6 +1,7 @@
 const utility = require('../utility');
 const tempEnum = ['celcius', 'farenheit']
 const lengthEnum = ["inch", "yard", "centimetre", "feet"]
+const volumeEnum = ["millilitre", "litre","gallon"]
 module.exports.temperatureConversion = (body, callback) => {
     try {
         let
@@ -67,6 +68,25 @@ module.exports.temperatureConversion = (body, callback) => {
                 throw errorArray
             }
             utility.lengthConversion(body, (err, data)=> {
+                if(data){
+                    return callback(null, data)
+                }
+            })
+        } else  {
+            for (let i = 0; i < volumeEnum.length; i++) {
+                if (body.unit === volumeEnum[i]) {
+                    isUnitEnumFlag = false;
+                }
+                if (body.convertTo === volumeEnum[i]) {
+                    isConvertToEnumFlag = false
+                }
+            }
+            if (isUnitEnumFlag === true || isConvertToEnumFlag === true) {
+                let enumErrorMessage = "unit and convertTo can only be a millilitre , litre or gallon"
+                errorArray.push(enumErrorMessage)
+                throw errorArray
+            }
+            utility.volumeConversion(body, (err, data)=> {
                 if(data){
                     return callback(null, data)
                 }
