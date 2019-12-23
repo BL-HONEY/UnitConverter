@@ -25,7 +25,7 @@ module.exports.unitConversion = (body, callback) => {
             errorArray.push(TypeErrorMessage);
             throw errorArray;
         }
-        if (typeof (body.value) !== "number" ) {
+        if (typeof (body.value) !== "number") {
             let TypeErrorMessage = "value cannot be a " + typeof (body.value)
             errorArray.push(TypeErrorMessage);
             throw errorArray;
@@ -97,22 +97,18 @@ module.exports.unitConversion = (body, callback) => {
         return callback(err, null);
     }
 }
-
 module.exports.measureService = (params, callback) => {
     try {
-        if(params == undefined || params === null || params === '')
-        throw "wrong input for measure";
-
+        if (params == undefined || params === null || params === '')
+            throw "wrong input for measure";
         if (params === "length") {
-           return callback(null, staticJson.length)
+            return callback(null, staticJson.length)
         } else if (params === "volume") {
-           return callback(null, staticJson.volume)
+            return callback(null, staticJson.volume)
         } else {
-           return callback(null, staticJson.temperature)
+            return callback(null, staticJson.temperature)
         }
     } catch (err) {
-  console.log("o am here inside catch block");
-  
-       return callback(err, null)
+        return callback(err, null)
     }
 }

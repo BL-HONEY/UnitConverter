@@ -29,9 +29,7 @@ describe('testing if there is a function for temperature conversion', () => {
                "measureCriteria": "temperature"
            }
            unitConverterService.unitConversion(requestBody, (err, data) => {
-               if(err){
-                   console.log(err);
-                   
+               if(err){                   
                  assert.equal(err, "null values found in request body");
                  done();
                }

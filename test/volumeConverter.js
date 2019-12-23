@@ -157,9 +157,7 @@ const
                "value":3785.41,
                "measureCriteria": "volume"
            }
-           unitConverterService.unitConversion(requestBody, (err, data) => {
-               console.log("data here: ", data);
-               
+           unitConverterService.unitConversion(requestBody, (err, data) => {               
                if(data){                   
                  assert.equal(Math.floor(data), 1);
                  done();

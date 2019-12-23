@@ -13,12 +13,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-// app.use(expressValidator());
 app.use('/api', router);
-
 const loadEnvBasedConfig = (env) => {
     config = require("./config/"+env);
-    app.listen(config.PORT, function(){
+    return app.listen(config.PORT, function(){
         console.log("You are connect to %s environment",env);
         console.log("Application is listening to PORT %d ...." , config.PORT);
     })

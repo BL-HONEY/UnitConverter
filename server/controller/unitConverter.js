@@ -54,9 +54,7 @@ class UnitConverterControl {
 
     }
     measureControl(req, res){
-        try {
-            console.log("req: ", req);
-            
+        try {            
             let measure = req.params.measure            
             for (let i = 0; i < measureEnum.length; i++) {
               if(measure === measureEnum[i]){

@@ -142,9 +142,7 @@ const
                 "measureCriteria": "length"
             }
             unitConverterService.unitConversion(requestBody, (err, data) => {
-                if(data){      
-                    console.log(data);
-                                                     
+                if(data){                                                           
                   assert.equal( Math.floor( data), 12);
                   done();
                 }
@@ -158,9 +156,7 @@ const
                "measureCriteria": "length"
            }
            unitConverterService.unitConversion(requestBody, (err, data) => {
-               if(data){    
-                   console.log("data at 117: ", data);
-                                  
+               if(data){                                      
                  assert.equal(data, 36);
                  done();
                }
@@ -175,9 +171,7 @@ const
                 "measureCriteria": "length"
             }
             unitConverterService.unitConversion(requestBody, (err, data) => {
-                if(data){      
-                    console.log(data);
-                                                     
+                if(data){                                                           
                   assert.equal( Math.floor( data), 1);
                   done();
                 }
