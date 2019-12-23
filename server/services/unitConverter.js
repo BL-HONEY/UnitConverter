@@ -1,8 +1,9 @@
 const utility = require('../utility');
+const staticJson = require('../static/staticUnit.json');
 const tempEnum = ['celcius', 'farenheit']
 const lengthEnum = ["inch", "yard", "centimetre", "feet"]
-const volumeEnum = ["millilitre", "litre","gallon"]
-module.exports.temperatureConversion = (body, callback) => {
+const volumeEnum = ["millilitre", "litre", "gallon"]
+module.exports.unitConversion = (body, callback) => {
     try {
         let
             errorMessage = "values found in request body",
@@ -24,7 +25,7 @@ module.exports.temperatureConversion = (body, callback) => {
             errorArray.push(TypeErrorMessage);
             throw errorArray;
         }
-        if (typeof (body.value) !== "number") {
+        if (typeof (body.value) !== "number" ) {
             let TypeErrorMessage = "value cannot be a " + typeof (body.value)
             errorArray.push(TypeErrorMessage);
             throw errorArray;
@@ -67,12 +68,12 @@ module.exports.temperatureConversion = (body, callback) => {
                 errorArray.push(enumErrorMessage)
                 throw errorArray
             }
-            utility.lengthConversion(body, (err, data)=> {
-                if(data){
+            utility.lengthConversion(body, (err, data) => {
+                if (data) {
                     return callback(null, data)
                 }
             })
-        } else  {
+        } else {
             for (let i = 0; i < volumeEnum.length; i++) {
                 if (body.unit === volumeEnum[i]) {
                     isUnitEnumFlag = false;
@@ -86,13 +87,32 @@ module.exports.temperatureConversion = (body, callback) => {
                 errorArray.push(enumErrorMessage)
                 throw errorArray
             }
-            utility.volumeConversion(body, (err, data)=> {
-                if(data){
+            utility.volumeConversion(body, (err, data) => {
+                if (data) {
                     return callback(null, data)
                 }
             })
         }
     } catch (err) {
         return callback(err, null);
+    }
+}
+
+module.exports.measureService = (params, callback) => {
+    try {
+        if(params == undefined || params === null || params === '')
+        throw "wrong input for measure";
+
+        if (params === "length") {
+           return callback(null, staticJson.length)
+        } else if (params === "volume") {
+           return callback(null, staticJson.volume)
+        } else {
+           return callback(null, staticJson.temperature)
+        }
+    } catch (err) {
+  console.log("o am here inside catch block");
+  
+       return callback(err, null)
     }
 }

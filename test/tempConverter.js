@@ -10,7 +10,7 @@ const
 describe('testing if there is a function for temperature conversion', () => {
     it('should check existence of temperature function', (done) => {
         let requestBody = {}
-        unitConverterService.temperatureConversion(requestBody, (err, data) => {
+        unitConverterService.unitConversion(requestBody, (err, data) => {
             if (err) {
                 done();
             } else {
@@ -28,7 +28,7 @@ describe('testing if there is a function for temperature conversion', () => {
                "value":4,
                "measureCriteria": "temperature"
            }
-           unitConverterService.temperatureConversion(requestBody, (err, data) => {
+           unitConverterService.unitConversion(requestBody, (err, data) => {
                if(err){
                    console.log(err);
                    
@@ -45,7 +45,7 @@ describe('testing if there is a function for temperature conversion', () => {
                 "value": 4,
                 "measureCriteria": "temperature"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(err){
                   assert.equal(err, "null values found in request body");
                   done();
@@ -60,7 +60,7 @@ describe('testing if there is a function for temperature conversion', () => {
                 "value": null,
                 "measureCriteria": "temperature"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(err){
                   assert.equal(err, "null values found in request body");
                   done();
@@ -78,7 +78,7 @@ describe('testing if there is a function for temperature conversion', () => {
                "value":4,
                "measureCriteria": "temperature"
            }
-           unitConverterService.temperatureConversion(requestBody, (err, data) => {
+           unitConverterService.unitConversion(requestBody, (err, data) => {
                if(err){
                  assert.equal(err, "undefined values found in request body");
                  done();
@@ -93,7 +93,7 @@ describe('testing if there is a function for temperature conversion', () => {
                 "value": 4,
                 "measureCriteria": "temperature"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(err){
                   assert.equal(err, "undefined values found in request body");
                   done();
@@ -108,7 +108,7 @@ describe('testing if there is a function for temperature conversion', () => {
                 "value": undefined,
                 "measureCriteria": "temperature"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(err){
                   assert.equal(err, "undefined values found in request body");
                   done();
@@ -126,7 +126,7 @@ describe('testing if there is a function for temperature conversion', () => {
                "value":4,
                "measureCriteria": "temperature"
            }
-           unitConverterService.temperatureConversion(requestBody, (err, data) => {
+           unitConverterService.unitConversion(requestBody, (err, data) => {
                if(err){
                  assert.equal(err, "unit cannot be a number");
                  done();
@@ -141,7 +141,7 @@ describe('testing if there is a function for temperature conversion', () => {
                 "value":"xyz",
                 "measureCriteria": "temperature"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(err){                    
                   assert.equal(err, "value cannot be a string");
                   done();
@@ -156,7 +156,7 @@ describe('testing if there is a function for temperature conversion', () => {
                 "value":32,
                 "measureCriteria": "temperature"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(err){
                   assert.equal(err, "convertTo cannot be a number");
                   done();
@@ -176,7 +176,7 @@ describe('testing if there is a function for temperature conversion', () => {
                "measureCriteria": "temperature"
 
            }
-           unitConverterService.temperatureConversion(requestBody, (err, data) => {
+           unitConverterService.unitConversion(requestBody, (err, data) => {
                if(err){                   
                  assert.equal(err, "unit and convertTo can only be a celcius or farenheit");
                  done();
@@ -191,7 +191,7 @@ describe('testing if there is a function for temperature conversion', () => {
                 "value":4,
                 "measureCriteria": "temperature"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(err){
                   assert.equal(err, "unit and convertTo can only be a celcius or farenheit");
                   done();
@@ -206,7 +206,7 @@ describe('testing if there is a function for temperature conversion', () => {
                 "value":4,
                 "measureCriteria": "temperature"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(err){                    
                   assert.equal(err, "unit and convertTo can only be a celcius or farenheit");
                   done();
@@ -225,7 +225,7 @@ describe('testing if there is a function for temperature conversion', () => {
                "value":212,
                "measureCriteria": "temperature"
            }
-           unitConverterService.temperatureConversion(requestBody, (err, data) => {               
+           unitConverterService.unitConversion(requestBody, (err, data) => {               
                if(data){                                      
                  assert.equal(data, 100 );
                  done();
@@ -240,7 +240,7 @@ describe('testing if there is a function for temperature conversion', () => {
                 "value":100,
                 "measureCriteria": "temperature"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {               
+            unitConverterService.unitConversion(requestBody, (err, data) => {               
                 if(data){                                      
                   assert.equal(data, 212 );
                   done();
@@ -248,6 +248,19 @@ describe('testing if there is a function for temperature conversion', () => {
             })
          });
 
-      
+         it('should return "proper convertion of celcius to celcius" ' , (done) => {
+            let requestBody = {
+                "unit":"celcius",
+                "convertTo":"celcius",
+                "value":100,
+                "measureCriteria": "temperature"
+            }
+            unitConverterService.unitConversion(requestBody, (err, data) => {               
+                if(data){                                      
+                  assert.equal(data, 100 );
+                  done();
+                }
+            })
+         });
 
         });

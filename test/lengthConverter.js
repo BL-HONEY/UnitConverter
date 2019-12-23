@@ -16,8 +16,8 @@ const
                "value":4,
                "measureCriteria": "length"
            }
-           unitConverterService.temperatureConversion(requestBody, (err, data) => {
-               if(err){                   
+           unitConverterService.unitConversion(requestBody, (err, data) => {
+            if(err){                   
                  assert.equal(err, "unit and convertTo can only be a inch , yard , centimetre or feet");
                  done();
                }
@@ -30,7 +30,7 @@ const
                 "value":4,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(err){                   
                   assert.equal(err, "unit and convertTo can only be a inch , yard , centimetre or feet");
                   done();
@@ -48,7 +48,7 @@ const
                "value":3,
                "measureCriteria": "length"
            }
-           unitConverterService.temperatureConversion(requestBody, (err, data) => {
+           unitConverterService.unitConversion(requestBody, (err, data) => {
                if(data){                   
                  assert.equal(data, 1);
                  done();
@@ -62,7 +62,7 @@ const
                 "value":36,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){                   
                   assert.equal(data, 1);
                   done();
@@ -76,7 +76,7 @@ const
                 "value":1,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){                   
                   assert.notEqual(data, 1);
                   done();
@@ -91,7 +91,7 @@ const
                 "value":1,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){                   
                   assert.notEqual(data, 1);
                   done();
@@ -106,9 +106,24 @@ const
                 "value":1,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){                                       
                   assert.equal(data, 0.010936132983377079);
+                  done();
+                }
+            })
+         });
+
+         it('1 yard should be equal to 1 yard' , (done) => {
+            let requestBody = {
+                "unit":"yard",
+                "convertTo":"yard",
+                "value":1,
+                "measureCriteria": "length"
+            }
+            unitConverterService.unitConversion(requestBody, (err, data) => {
+                if(data){                                       
+                  assert.equal(data, 1);
                   done();
                 }
             })
@@ -126,7 +141,7 @@ const
                 "value":1,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){      
                     console.log(data);
                                                      
@@ -142,7 +157,7 @@ const
                "value":1,
                "measureCriteria": "length"
            }
-           unitConverterService.temperatureConversion(requestBody, (err, data) => {
+           unitConverterService.unitConversion(requestBody, (err, data) => {
                if(data){    
                    console.log("data at 117: ", data);
                                   
@@ -159,10 +174,25 @@ const
                 "value":2.54,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){      
                     console.log(data);
                                                      
+                  assert.equal( Math.floor( data), 1);
+                  done();
+                }
+            })
+         });
+
+         it('1 inch should be equal to 1 inch' , (done) => {
+            let requestBody = {
+                "unit":"inch",
+                "convertTo":"inch",
+                "value":1,
+                "measureCriteria": "length"
+            }
+            unitConverterService.unitConversion(requestBody, (err, data) => {
+                if(data){                                                           
                   assert.equal( Math.floor( data), 1);
                   done();
                 }
@@ -182,7 +212,7 @@ const
                 "value":1,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){     
                     console.log("data at 187:", data);
                                                                           
@@ -199,7 +229,7 @@ const
                 "value":1,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){                                                                               
                   assert.equal( Math.floor( data), 3);
                   done();
@@ -214,7 +244,7 @@ const
                 "value": 38.48,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){                                                                               
                   assert.equal( Math.floor( data), 1);
                   done();
@@ -222,6 +252,20 @@ const
             })
          });
        
+         it('1 feet should be equal to 1 feet' , (done) => {
+            let requestBody = {
+                "unit":"feet",
+                "convertTo":"feet",
+                "value": 1,
+                "measureCriteria": "length"
+            }
+            unitConverterService.unitConversion(requestBody, (err, data) => {
+                if(data){                                                                               
+                  assert.equal( Math.floor( data), 1);
+                  done();
+                }
+            })
+         });
       
      }); 
 
@@ -235,7 +279,7 @@ const
                 "value":1,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){                                                                               
                   assert.equal( data, 91.44);
                   done();
@@ -250,7 +294,7 @@ const
                 "value":1,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){                                                                               
                   assert.equal( data, 30.48);
                   done();
@@ -265,9 +309,24 @@ const
                 "value": 1,
                 "measureCriteria": "length"
             }
-            unitConverterService.temperatureConversion(requestBody, (err, data) => {
+            unitConverterService.unitConversion(requestBody, (err, data) => {
                 if(data){                                                                               
                   assert.equal(data, 2.54);
+                  done();
+                }
+            })
+         });
+
+         it('1 centimetre should be equal to 1 centimetre' , (done) => {
+            let requestBody = {
+                "unit":"centimetre",
+                "convertTo":"centimetre",
+                "value": 1,
+                "measureCriteria": "length"
+            }
+            unitConverterService.unitConversion(requestBody, (err, data) => {
+                if(data){                                                                               
+                  assert.equal(data, 1);
                   done();
                 }
             })
@@ -275,3 +334,70 @@ const
        
       
      });
+     
+     describe('check measure function for incorrect inputs', () => {
+
+        it('should return error for undefined input' , (done) => {
+    
+            unitConverterService.measureService(undefined, (err, data)=> {
+                if(err){
+                    assert.equal(err, "wrong input for measure");
+                    done();
+                }
+            })
+        })
+
+        it('should return error for null input' , (done) => {
+    
+            unitConverterService.measureService(null, (err, data)=> {
+                if(err){
+                    assert.equal(err, "wrong input for measure");
+                    done();
+                }
+            })
+        })
+
+        it('should return error for empty input' , (done) => {
+    
+            unitConverterService.measureService("", (err, data)=> {
+                if(err){
+                    assert.equal(err, "wrong input for measure");
+                    done();
+                }
+            })
+        })
+    });
+
+
+     describe('check measure function return corrent units or not', () => {
+
+        it('should return correct units for length' , (done) => {
+    
+            unitConverterService.measureService("length", (err, data)=> {
+                if(data){
+                    assert.isArray(data);
+                    done();
+                }
+            })
+        })
+
+        it('should return correct units for volume' , (done) => {
+    
+            unitConverterService.measureService("volume", (err, data)=> {
+                if(data){
+                    assert.isArray(data);
+                    done();
+                }
+            })
+        })
+
+        it('should return correct units for temperature' , (done) => {
+    
+            unitConverterService.measureService("temperature", (err, data)=> {
+                if(data){
+                    assert.isArray(data);
+                    done();
+                }
+            })
+        })
+    })

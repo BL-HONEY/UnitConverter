@@ -2,5 +2,5 @@ projectKey=unitconverter
 serverUrl=http://localhost:9000
 serverVersion=6.7.1.35068
 dashboardUrl=http://localhost:9000/dashboard/index/unitconverter
-ceTaskId=AW8iHRojLRVNnbyk8cxT
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AW8iHRojLRVNnbyk8cxT
+ceTaskId=AW8xFJ4wWSHjfSiBpzx-
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AW8xFJ4wWSHjfSiBpzx-

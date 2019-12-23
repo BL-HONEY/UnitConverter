@@ -1,9 +1,5 @@
 {
-    "temperture": 
-        {
-        "celcius":{
-          "fahrenheit":32
-        }
-    }
-    
+    "length": ["inch", "yard", "centimetre", "feet"],
+    "volume": ["millilitre", "litre","gallon"],
+    "temperature":["celcius", "farenheit"]    
 }

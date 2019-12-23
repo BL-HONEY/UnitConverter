@@ -1,11 +1,13 @@
 class Utility {
     tempConversion(body, callback)  {
-        if (body.unit === "celcius") {
+        if (body.unit === "celcius" && body.convertTo === "farenheit") {
             let valueInFarenheit = (body.value * 9 / 5) + 32
             return callback(null, valueInFarenheit);
-        } else {
+        } else if(body.unit === "farenheit" && body.convertTo === "celcius"){
             let valueInCelcius = (body.value - 32) * 5 / 9
             return callback(null, valueInCelcius)
+        }else{
+            return callback(null, body.value)
         }
     }
     lengthConversion(body, callback){
@@ -41,23 +43,29 @@ class Utility {
     convertToMillilitre(unit, value){
         if(unit === "gallon"){
             return value * 3785
-        }else {
+        }else if(unit === "litre"){
             return value * 1000
+        }else{
+            return value;
         }
     }
 
     convertToLitre(unit, value){
         if(unit === "gallon"){
             return value * 3.78541
-        }else {
+        }else if(unit === "millilitre"){
             return value / 1000
+        }else{
+            return value;
         }
     }
     convertToGallon(unit, value){
         if(unit === "litre"){
             return value / 3.78541
-        }else {
+        }else if(unit === "millilitre"){
             return value / 3785
+        }else{
+            return value;
         }
     }
     convertToYard (unit, value){
@@ -66,8 +74,10 @@ class Utility {
         }
         else if(unit === "inch") {
             return value / 36;
-        }else {
+        }else if(unit === "centimetre"){
             return value / 91.44;
+        }else {
+            return value;
         }
     }
 
@@ -77,8 +87,11 @@ class Utility {
         }
         else if(unit === "yard") {
             return value * 36;
-        }else {
+        }
+        else if(unit === "centimetre"){
             return value / 2.54;
+        }else {
+            return value;
         }
     }
 
@@ -89,8 +102,10 @@ class Utility {
         else if(unit === "yard") {
             return value * 3;
         }
-        else {
+        else if(unit === "centimetre") {
             return value / 30.48;
+        }else {
+            return value;
         }
     }
 
@@ -101,8 +116,10 @@ class Utility {
         else if(unit === "yard") {
             return value * 91.44;
         }
-        else {
+        else if(unit === "feet"){
             return value * 30.48;
+        }else{
+            return value
         }
     }
 }

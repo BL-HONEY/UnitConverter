@@ -2,23 +2,17 @@ const
     express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
+    cors = require('cors'),
     expressValidator = require('express-validator'),
     router = require('./routers/router');
 
 require("dotenv").config();
+app.use(cors())
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,x-access-token');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
-});
 // app.use(expressValidator());
 app.use('/api', router);
 
