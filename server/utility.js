@@ -1,43 +1,42 @@
 class Utility {
+    constructor(){
+        this.resultData = null;
+    }
     tempConversion(body, callback)  {
         if (body.unit === "celcius" && body.convertTo === "farenheit") {
-            let valueInFarenheit = (body.value * 9 / 5) + 32
-            return callback(null, valueInFarenheit);
+            this.resultData = (body.value * 9 / 5) + 32
         } else if(body.unit === "farenheit" && body.convertTo === "celcius"){
-            let valueInCelcius = (body.value - 32) * 5 / 9
-            return callback(null, valueInCelcius)
+            this.resultData = (body.value - 32) * 5 / 9
         }else{
-            return callback(null, body.value)
+            this.resultData = body.value
         }
+        return callback(null, this.resultData)
     }
     lengthConversion(body, callback){
         if (body.convertTo === "yard") {
-            let resultData = this.convertToYard(body.unit, body.value);
-            return callback(null, resultData)
+            this.resultData = this.convertToYard(body.unit, body.value);
         }else if(body.convertTo === "inch"){
-            let resultData = this.convertToInches(body.unit, body.value);
-            return callback(null, resultData)
+             this.resultData = this.convertToInches(body.unit, body.value);
         } else if(body.convertTo === "centimetre"){
-            let resultData = this.convertToCentimetre(body.unit, body.value);
-            return callback(null, resultData) 
+             this.resultData = this.convertToCentimetre(body.unit, body.value);
         }else{
-            let resultData = this.convertToFeet(body.unit, body.value);
-            return callback(null, resultData) 
+             this.resultData = this.convertToFeet(body.unit, body.value);
         }
+        return callback(null, this.resultData)
+
     }
 
     volumeConversion(body, callback){
         if (body.convertTo === "millilitre") {
-            let resultData = this.convertToMillilitre(body.unit, body.value);
-            return callback(null, resultData)
+            this.resultData = this.convertToMillilitre(body.unit, body.value);
         }
         else if(body.convertTo === "gallon"){
-             let resultData = this.convertToGallon(body.unit, body.value);
-             return callback(null, resultData)
+              this.resultData = this.convertToGallon(body.unit, body.value);
         }else{
-            let resultData = this.convertToLitre(body.unit, body.value);
-            return callback(null, resultData) 
+            this.resultData = this.convertToLitre(body.unit, body.value);
         }
+        return callback(null, this.resultData)
+
     }
 
     convertToMillilitre(unit, value){

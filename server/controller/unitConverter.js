@@ -1,8 +1,10 @@
+'use strict'
 const unitConverterService = require("../services/unitConverter");
 const measureEnum = ["length", "volume", "temperature"]
 let measureEnumFLag = false;
-class UnitConverterControl {
 
+class UnitConverterControl {
+    // static publisher = "Ilya Kantor";
     conversionControl(req, res) {
         try {
         let measure = req.params.measure
@@ -11,7 +13,6 @@ class UnitConverterControl {
               measureEnumFLag = true
           }
         }
-
         if(measureEnumFLag === false){
             res.status(400).send({
                 status: false,
@@ -68,12 +69,12 @@ class UnitConverterControl {
                   })
             }else{
                unitConverterService.measureService(measure, (err, response)=>{
-                   if(err){
-                    res.status(422).send({
-                        status: false,
-                        error: err
-                      })
-                   }else{
+                //    if(err){
+                //     res.status(422).send({
+                //         status: false,
+                //         error: err
+                //       })
+                //    }else{
                        let responseBody = {
                            "measure": measure,
                            "units": response 
@@ -83,7 +84,7 @@ class UnitConverterControl {
                         code: 200,
                         data: responseBody,
                       })  
-                   }
+                //    }
                })
             }
         }catch(err){
