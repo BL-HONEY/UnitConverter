@@ -70,57 +70,55 @@ class Utility {
         }
     }
     convertToYard(unit, value) {
-        if (unit === "feet") {
-            return value / 3;
-        }
-        else if (unit === "inch") {
-            return value / 36;
-        } else if (unit === "centimetre") {
-            return value / 91.44;
-        } else {
-            return value;
+        switch (unit) {
+            case "feet":
+                return value / 3;
+            case "inch":
+                return value / 36;
+            case "centimetre":
+                return value / 91.44;
+            default:
+                return value
         }
     }
 
     convertToInches(unit, value) {
-        if (unit === "feet") {
-            return value * 12;
-        }
-        else if (unit === "yard") {
-            return value * 36;
-        }
-        else if (unit === "centimetre") {
-            return value / 2.54;
-        } else {
-            return value;
+        switch (unit) {
+            case "feet":
+                return value * 12;
+            case "yard":
+                return value * 36;
+            case "centimetre":
+                return value / 2.54;
+            default:
+                return value
         }
     }
 
     convertToFeet(unit, value) {
-        if (unit === "inch") {
-            return value / 12;
-        }
-        else if (unit === "yard") {
-            return value * 3;
-        }
-        else if (unit === "centimetre") {
-            return value / 30.48;
-        } else {
-            return value;
+        switch (unit) {
+            case "inch":
+                return value / 12;
+            case "yard":
+                return value * 3;
+            case "centimetre":
+                return value / 30.48;
+            default:
+                return value
         }
     }
 
     convertToCentimetre(unit, value) {
-        if (unit === "inch") {
-            return value * 2.54;
-        }
-        else if (unit === "yard") {
-            return value * 91.44;
-        }
-        else if (unit === "feet") {
-            return value * 30.48;
-        } else {
-            return value
+
+        switch (unit) {
+            case "inch":
+                return value * 2.54;
+            case "yard":
+                return value * 91.44;
+            case "feet":
+                return value * 30.48;
+            default:
+                return value
         }
     }
 }

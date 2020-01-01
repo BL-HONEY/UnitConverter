@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="197" lines-covered="194" line-rate="0.9848" branches-valid="122" branches-covered="118" branch-rate="0.9672" timestamp="1577889112252" complexity="0" version="0.1">
+<coverage lines-valid="189" lines-covered="186" line-rate="0.9841" branches-valid="114" branches-covered="110" branch-rate="0.9649" timestamp="1577890072504" complexity="0" version="0.1">
   <sources>
     <source>/home/honey/Projects/UnitConverter</source>
   </sources>
@@ -102,12 +102,12 @@
             </method>
             <method name="(anonymous_9)" hits="4" signature="()V">
               <lines>
-                <line number="99" hits="4"/>
+                <line number="98" hits="4"/>
               </lines>
             </method>
             <method name="(anonymous_10)" hits="4" signature="()V">
               <lines>
-                <line number="113" hits="4"/>
+                <line number="111" hits="4"/>
               </lines>
             </method>
           </methods>
@@ -144,35 +144,27 @@
             <line number="66" hits="3" branch="true" condition-coverage="100% (2/2)"/>
             <line number="67" hits="1" branch="false"/>
             <line number="69" hits="2" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="73" hits="6" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="74" hits="2" branch="false"/>
-            <line number="76" hits="4" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="73" hits="6" branch="true" condition-coverage="100% (4/4)"/>
+            <line number="75" hits="2" branch="false"/>
             <line number="77" hits="2" branch="false"/>
-            <line number="78" hits="2" branch="true" condition-coverage="100% (2/2)"/>
             <line number="79" hits="1" branch="false"/>
             <line number="81" hits="1" branch="false"/>
-            <line number="86" hits="6" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="87" hits="1" branch="false"/>
-            <line number="89" hits="5" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="86" hits="6" branch="true" condition-coverage="100% (4/4)"/>
+            <line number="88" hits="1" branch="false"/>
             <line number="90" hits="1" branch="false"/>
-            <line number="92" hits="4" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="93" hits="3" branch="false"/>
-            <line number="95" hits="1" branch="false"/>
-            <line number="100" hits="4" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="92" hits="3" branch="false"/>
+            <line number="94" hits="1" branch="false"/>
+            <line number="99" hits="4" branch="true" condition-coverage="100% (4/4)"/>
             <line number="101" hits="1" branch="false"/>
-            <line number="103" hits="3" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="104" hits="1" branch="false"/>
-            <line number="106" hits="2" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="103" hits="1" branch="false"/>
+            <line number="105" hits="1" branch="false"/>
             <line number="107" hits="1" branch="false"/>
-            <line number="109" hits="1" branch="false"/>
-            <line number="114" hits="4" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="113" hits="4" branch="true" condition-coverage="100% (4/4)"/>
             <line number="115" hits="1" branch="false"/>
-            <line number="117" hits="3" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="118" hits="1" branch="false"/>
-            <line number="120" hits="2" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="117" hits="1" branch="false"/>
+            <line number="119" hits="1" branch="false"/>
             <line number="121" hits="1" branch="false"/>
-            <line number="123" hits="1" branch="false"/>
-            <line number="127" hits="1" branch="false"/>
+            <line number="125" hits="1" branch="false"/>
           </lines>
         </class>
       </classes>
