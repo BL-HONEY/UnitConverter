@@ -1,123 +1,125 @@
 class Utility {
-    constructor(){
+    constructor() {
         this.resultData = null;
     }
-    tempConversion(body, callback)  {
+    tempConversion(body, callback) {
         if (body.unit === "celcius" && body.convertTo === "farenheit") {
             this.resultData = (body.value * 9 / 5) + 32
-        } else if(body.unit === "farenheit" && body.convertTo === "celcius"){
+        } else if (body.unit === "farenheit" && body.convertTo === "celcius") {
             this.resultData = (body.value - 32) * 5 / 9
-        }else{
+        } else {
             this.resultData = body.value
         }
         return callback(null, this.resultData)
     }
-    lengthConversion(body, callback){
-        if (body.convertTo === "yard") {
-            this.resultData = this.convertToYard(body.unit, body.value);
-        }else if(body.convertTo === "inch"){
-             this.resultData = this.convertToInches(body.unit, body.value);
-        } else if(body.convertTo === "centimetre"){
-             this.resultData = this.convertToCentimetre(body.unit, body.value);
-        }else{
-             this.resultData = this.convertToFeet(body.unit, body.value);
-        }
-        return callback(null, this.resultData)
+    lengthConversion(body, callback) {
 
+        switch (body.convertTo) {
+            case "yard":
+                this.resultData = this.convertToYard(body.unit, body.value);
+                break;
+            case "inch":
+                this.resultData = this.convertToInches(body.unit, body.value);
+                break;
+            case "centimetre":
+                this.resultData = this.convertToCentimetre(body.unit, body.value);
+                break;
+            default:
+                this.resultData = this.convertToFeet(body.unit, body.value);
+        }
+
+        return callback(null, this.resultData);
     }
 
-    volumeConversion(body, callback){
-        if (body.convertTo === "millilitre") {
-            this.resultData = this.convertToMillilitre(body.unit, body.value);
-        }
-        else if(body.convertTo === "gallon"){
-              this.resultData = this.convertToGallon(body.unit, body.value);
-        }else{
-            this.resultData = this.convertToLitre(body.unit, body.value);
-        }
-        return callback(null, this.resultData)
+    volumeConversion(body, callback) {
 
+        switch (body.convertTo) {
+            case "millilitre":
+                this.resultData = this.convertToMillilitre(body.unit, body.value);
+                break;
+            case "gallon":
+                this.resultData = this.convertToGallon(body.unit, body.value);
+                break;
+            default:
+                this.resultData = this.convertToLitre(body.unit, body.value);
+        }
+
+        return callback(null, this.resultData);
     }
 
-    convertToMillilitre(unit, value){
-        if(unit === "gallon"){
+    convertToMillilitre(unit, value) {
+        if (unit === "gallon") {
             return value * 3785
-        }else if(unit === "litre"){
-            return value * 1000
-        }else{
-            return value;
+        } else {
+            return (unit === "litre" ? value * 1000 : value);
         }
     }
 
-    convertToLitre(unit, value){
-        if(unit === "gallon"){
+    convertToLitre(unit, value) {
+        if (unit === "gallon") {
             return value * 3.78541
-        }else if(unit === "millilitre"){
-            return value / 1000
-        }else{
-            return value;
+        } else {
+            return (unit === "millilitre" ? value / 1000 : value);
         }
     }
-    convertToGallon(unit, value){
-        if(unit === "litre"){
+    convertToGallon(unit, value) {
+        if (unit === "litre") {
             return value / 3.78541
-        }else if(unit === "millilitre"){
-            return value / 3785
-        }else{
-            return value;
+        } else {
+            return (unit === "millilitre" ? value / 3785 : value);
         }
     }
-    convertToYard (unit, value){
+    convertToYard(unit, value) {
         if (unit === "feet") {
             return value / 3;
         }
-        else if(unit === "inch") {
+        else if (unit === "inch") {
             return value / 36;
-        }else if(unit === "centimetre"){
+        } else if (unit === "centimetre") {
             return value / 91.44;
-        }else {
+        } else {
             return value;
         }
     }
 
-    convertToInches (unit, value){
+    convertToInches(unit, value) {
         if (unit === "feet") {
             return value * 12;
         }
-        else if(unit === "yard") {
+        else if (unit === "yard") {
             return value * 36;
         }
-        else if(unit === "centimetre"){
+        else if (unit === "centimetre") {
             return value / 2.54;
-        }else {
+        } else {
             return value;
         }
     }
 
-    convertToFeet (unit, value){
+    convertToFeet(unit, value) {
         if (unit === "inch") {
             return value / 12;
         }
-        else if(unit === "yard") {
+        else if (unit === "yard") {
             return value * 3;
         }
-        else if(unit === "centimetre") {
+        else if (unit === "centimetre") {
             return value / 30.48;
-        }else {
+        } else {
             return value;
         }
     }
 
-    convertToCentimetre (unit, value){
+    convertToCentimetre(unit, value) {
         if (unit === "inch") {
             return value * 2.54;
         }
-        else if(unit === "yard") {
+        else if (unit === "yard") {
             return value * 91.44;
         }
-        else if(unit === "feet"){
+        else if (unit === "feet") {
             return value * 30.48;
-        }else{
+        } else {
             return value
         }
     }

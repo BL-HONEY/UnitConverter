@@ -207,9 +207,7 @@ const
                 "measureCriteria": "length"
             }
             unitConverterService.unitConversion(requestBody, (err, data) => {
-                if(data){     
-                    console.log("data at 187:", data);
-                                                                          
+                if(data){                                                                               
                   assert.equal( data, 0.08333333333333333);
                   done();
                 }
