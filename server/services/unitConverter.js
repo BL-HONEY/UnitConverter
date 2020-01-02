@@ -74,14 +74,14 @@ module.exports.unitConversion = (body, callback) => {
                 }
             })
         } else {
-            for (let i = 0; i < volumeEnum.length; i++) {
-                if (body.unit === volumeEnum[i]) {
+            volumeEnum.forEach((unit) => {
+                if (body.unit === unit) {
                     isUnitEnumFlag = false;
                 }
-                if (body.convertTo === volumeEnum[i]) {
+                if (body.convertTo === unit) {
                     isConvertToEnumFlag = false
                 }
-            }
+            });
             if (isUnitEnumFlag === true || isConvertToEnumFlag === true) {
                 let enumErrorMessage = "unit and convertTo can only be a millilitre , litre or gallon"
                 errorArray.push(enumErrorMessage)
