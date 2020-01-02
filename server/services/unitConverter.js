@@ -36,14 +36,14 @@ module.exports.unitConversion = (body, callback) => {
             throw errorArray;
         }
         if (body.measureCriteria === "temperature") {
-            for (let i = 0; i < tempEnum.length; i++) {
-                if (body.unit === tempEnum[i]) {
+            tempEnum.forEach((unit) => {
+                if (body.unit === unit) {
                     isUnitEnumFlag = false;
                 }
-                if (body.convertTo === tempEnum[i]) {
+                if (body.convertTo === unit) {
                     isConvertToEnumFlag = false
                 }
-            }
+            });
             if (isUnitEnumFlag === true || isConvertToEnumFlag === true) {
                 let enumErrorMessage = "unit and convertTo can only be a celcius or farenheit"
                 errorArray.push(enumErrorMessage)
@@ -55,14 +55,14 @@ module.exports.unitConversion = (body, callback) => {
                 }
             })
         } else if (body.measureCriteria === "length") {
-            for (let i = 0; i < lengthEnum.length; i++) {
-                if (body.unit === lengthEnum[i]) {
+            lengthEnum.forEach((unit) => {
+                if (body.unit === unit) {
                     isUnitEnumFlag = false;
                 }
-                if (body.convertTo === lengthEnum[i]) {
+                if (body.convertTo === unit) {
                     isConvertToEnumFlag = false
                 }
-            }
+            });
             if (isUnitEnumFlag === true || isConvertToEnumFlag === true) {
                 let enumErrorMessage = "unit and convertTo can only be a inch , yard , centimetre or feet"
                 errorArray.push(enumErrorMessage)
@@ -112,3 +112,4 @@ module.exports.measureService = (params, callback) => {
         return callback(err, null)
     }
 }
+
