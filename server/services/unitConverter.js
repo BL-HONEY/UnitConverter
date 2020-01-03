@@ -25,32 +25,34 @@ module.exports.unitConversion = (body, callback) => {
         if (!validationObj.dataTypeValidate(body.convertTo, "string"))
             throw "convertTo cannot be a " + typeof (body.convertTo)
 
-        if (body.measureCriteria === "temperature") {
-            if (!validationObj.enumTypeValidate(tempEnum, body))
-                throw "unit and convertTo can only be a celcius or farenheit"
+        switch (body.measureCriteria) {
+            case "temperature":
+                if (!validationObj.enumTypeValidate(tempEnum, body))
+                    throw "unit and convertTo can only be a celcius or farenheit"
 
-            utility.tempConversion(body, (err, data) => {
-                if (data) {
-                    return callback(null, data)
-                }
-            })
-        } else if (body.measureCriteria === "length") {
-            if (!validationObj.enumTypeValidate(lengthEnum, body))
-                throw "unit and convertTo can only be a inch , yard , centimetre or feet";
+                utility.tempConversion(body, (err, data) => {
+                    if (data) {
+                        return callback(null, data)
+                    }
+                })
 
-            utility.lengthConversion(body, (err, data) => {
-                if (data) {
-                    return callback(null, data)
-                }
-            })
-        } else {
-            if (!validationObj.enumTypeValidate(volumeEnum, body)) 
-                throw "unit and convertTo can only be a millilitre , litre or gallon";
-            utility.volumeConversion(body, (err, data) => {
-                if (data) {
-                    return callback(null, data)
-                }
-            })
+            case "length":
+                if (!validationObj.enumTypeValidate(lengthEnum, body))
+                    throw "unit and convertTo can only be a inch , yard , centimetre or feet";
+
+                utility.lengthConversion(body, (err, data) => {
+                    if (data) {
+                        return callback(null, data)
+                    }
+                })
+            default:
+                if (!validationObj.enumTypeValidate(volumeEnum, body))
+                    throw "unit and convertTo can only be a millilitre , litre or gallon";
+                utility.volumeConversion(body, (err, data) => {
+                    if (data) {
+                        return callback(null, data)
+                    }
+                })
         }
     } catch (err) {
         return callback(err, null);
