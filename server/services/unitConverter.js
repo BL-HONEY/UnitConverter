@@ -26,9 +26,7 @@ module.exports.unitConversion = (body, callback) => {
             throw "convertTo cannot be a " + typeof (body.convertTo)
 
         if (body.measureCriteria === "temperature") {
-            let enumValidationFlag = validationObj.enumTypeValidate(tempEnum, body)
-
-            if (enumValidationFlag === false)
+            if (!validationObj.enumTypeValidate(tempEnum, body))
                 throw "unit and convertTo can only be a celcius or farenheit"
 
             utility.tempConversion(body, (err, data) => {
@@ -37,9 +35,8 @@ module.exports.unitConversion = (body, callback) => {
                 }
             })
         } else if (body.measureCriteria === "length") {
-            let enumValidationFlag = validationObj.enumTypeValidate(lengthEnum, body)
-            if (enumValidationFlag === false)
-                throw "unit and convertTo can only be a inch , yard , centimetre or feet"
+            if (!validationObj.enumTypeValidate(lengthEnum, body))
+                throw "unit and convertTo can only be a inch , yard , centimetre or feet";
 
             utility.lengthConversion(body, (err, data) => {
                 if (data) {
@@ -47,12 +44,8 @@ module.exports.unitConversion = (body, callback) => {
                 }
             })
         } else {
-
-            let enumValidationFlag = validationObj.enumTypeValidate(volumeEnum, body)
-            if (enumValidationFlag === false) {
-                throw "unit and convertTo can only be a millilitre , litre or gallon"
-
-            }
+            if (!validationObj.enumTypeValidate(volumeEnum, body)) 
+                throw "unit and convertTo can only be a millilitre , litre or gallon";
             utility.volumeConversion(body, (err, data) => {
                 if (data) {
                     return callback(null, data)
