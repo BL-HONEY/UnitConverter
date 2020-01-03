@@ -2,90 +2,55 @@ const utility = require('../utility');
 const staticJson = require('../static/staticUnit.json');
 const tempEnum = ['celcius', 'farenheit']
 const lengthEnum = ["inch", "yard", "centimetre", "feet"]
-const volumeEnum = ["millilitre", "litre", "gallon"]
+const volumeEnum = ["millilitre", "litre", "gallon"];
+const validationObj = require('./error.Handler');
 module.exports.unitConversion = (body, callback) => {
     try {
         let
-            errorMessage = "values found in request body",
-            errorArray = [],
-            isUnitEnumFlag = true,
-            isConvertToEnumFlag = true;
-        if (body.unit === null || body.value === null || body.convertTo === null) {
-            let nullErrorMessage = "null " + errorMessage;
-            errorArray.push(nullErrorMessage)
-            throw errorArray;
-        }
-        if (body.unit === undefined || body.value === undefined || body.convertTo === undefined) {
-            let undefinedErrorMessage = "undefined " + errorMessage;
-            errorArray.push(undefinedErrorMessage);
-            throw errorArray;
-        }
-        if (typeof (body.unit) !== "string") {
-            let TypeErrorMessage = "unit cannot be a " + typeof (body.unit)
-            errorArray.push(TypeErrorMessage);
-            throw errorArray;
-        }
-        if (typeof (body.value) !== "number") {
-            let TypeErrorMessage = "value cannot be a " + typeof (body.value)
-            errorArray.push(TypeErrorMessage);
-            throw errorArray;
-        }
-        if (typeof (body.convertTo) !== "string") {
-            let typeErrorMessage = "convertTo cannot be a " + typeof (body.convertTo)
-            errorArray.push(typeErrorMessage);
-            throw errorArray;
-        }
+            errorMessage = "values found in request body";
+            
+        if (body.unit === null || body.value === null || body.convertTo === null)
+            throw "null " + errorMessage;
+
+        if (body.unit === undefined || body.value === undefined || body.convertTo === undefined)
+            throw "undefined " + errorMessage;
+
+        if (!validationObj.dataTypeValidate(body.unit, "string"))
+            throw "unit cannot be a " + typeof (body.unit)
+
+        if (!validationObj.dataTypeValidate(body.value, "number"))
+            throw "value cannot be a " + typeof (body.value)
+
+        if (!validationObj.dataTypeValidate(body.convertTo, "string"))
+            throw "convertTo cannot be a " + typeof (body.convertTo)
+
         if (body.measureCriteria === "temperature") {
-            tempEnum.forEach((unit) => {
-                if (body.unit === unit) {
-                    isUnitEnumFlag = false;
-                }
-                if (body.convertTo === unit) {
-                    isConvertToEnumFlag = false
-                }
-            });
-            if (isUnitEnumFlag === true || isConvertToEnumFlag === true) {
-                let enumErrorMessage = "unit and convertTo can only be a celcius or farenheit"
-                errorArray.push(enumErrorMessage)
-                throw errorArray
-            }
+            let enumValidationFlag = validationObj.enumTypeValidate(tempEnum, body)
+
+            if (enumValidationFlag === false)
+                throw "unit and convertTo can only be a celcius or farenheit"
+
             utility.tempConversion(body, (err, data) => {
                 if (data) {
                     return callback(null, data)
                 }
             })
         } else if (body.measureCriteria === "length") {
-            lengthEnum.forEach((unit) => {
-                if (body.unit === unit) {
-                    isUnitEnumFlag = false;
-                }
-                if (body.convertTo === unit) {
-                    isConvertToEnumFlag = false
-                }
-            });
-            if (isUnitEnumFlag === true || isConvertToEnumFlag === true) {
-                let enumErrorMessage = "unit and convertTo can only be a inch , yard , centimetre or feet"
-                errorArray.push(enumErrorMessage)
-                throw errorArray
-            }
+            let enumValidationFlag = validationObj.enumTypeValidate(lengthEnum, body)
+            if (enumValidationFlag === false)
+                throw "unit and convertTo can only be a inch , yard , centimetre or feet"
+
             utility.lengthConversion(body, (err, data) => {
                 if (data) {
                     return callback(null, data)
                 }
             })
         } else {
-            volumeEnum.forEach((unit) => {
-                if (body.unit === unit) {
-                    isUnitEnumFlag = false;
-                }
-                if (body.convertTo === unit) {
-                    isConvertToEnumFlag = false
-                }
-            });
-            if (isUnitEnumFlag === true || isConvertToEnumFlag === true) {
-                let enumErrorMessage = "unit and convertTo can only be a millilitre , litre or gallon"
-                errorArray.push(enumErrorMessage)
-                throw errorArray
+
+            let enumValidationFlag = validationObj.enumTypeValidate(volumeEnum, body)
+            if (enumValidationFlag === false) {
+                throw "unit and convertTo can only be a millilitre , litre or gallon"
+
             }
             utility.volumeConversion(body, (err, data) => {
                 if (data) {
@@ -97,6 +62,7 @@ module.exports.unitConversion = (body, callback) => {
         return callback(err, null);
     }
 }
+
 module.exports.measureService = (params, callback) => {
     try {
         if (params == undefined || params === null || params === '')
