@@ -1,14 +1,15 @@
-const utility = require('../utility');
-const staticJson = require('../static/staticUnit.json');
-const tempEnum = ['celcius', 'farenheit']
-const lengthEnum = ["inch", "yard", "centimetre", "feet"]
-const volumeEnum = ["millilitre", "litre", "gallon"];
-const validationObj = require('./error.Handler');
+const utility = require('../utility'),
+    staticJson = require('../static/staticUnit.json'),
+    tempEnum = ['celcius', 'farenheit'],
+    lengthEnum = ["inch", "yard", "centimetre", "feet"],
+    volumeEnum = ["millilitre", "litre", "gallon"],
+    validationObj = require('./error.Handler');
+
 module.exports.unitConversion = (body, callback) => {
     try {
         let
             errorMessage = "values found in request body";
-            
+
         if (body.unit === null || body.value === null || body.convertTo === null)
             throw "null " + errorMessage;
 
